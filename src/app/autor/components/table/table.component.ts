@@ -42,6 +42,10 @@ export class TableComponent{
   seleccianarAutorPorIndex(index: number) {
     const autorSeleccionado = this.obras[index];
     console.log(this.autores[index]);
+  }
+
+
+  agregarFavoritoAutor() {
 
   }
 

@@ -17,7 +17,7 @@ export class PaginaPrincipalComponent implements OnInit {
 
   ngOnInit(): void {
     this.allAuthors();
-    this.obtenerAutor(this.buscar);
+    this.obtenerAutorObras(this.buscar);
   }
 
   allAuthors() {
@@ -27,7 +27,7 @@ export class PaginaPrincipalComponent implements OnInit {
     });
   }
 
-  obtenerAutor(autor: string) {
+  obtenerAutorObras(autor: string) {
     this.buscar = autor;
     this.autorService.getObrasAuthor(this.buscar).subscribe((data: Obra[]) => {
       this.obras = data;

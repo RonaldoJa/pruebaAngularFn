@@ -22,7 +22,7 @@
                   Mostrar Fragmento de la obra
                 </button>
             <td>
-                <button type="button" class="btn btn-primary">
+                <button type="button" class="btn btn-primary" (click)="addFavoriteObra()">
                     Agregar esta obra a favoritos
                 </button>
           </tr>
@@ -34,7 +34,7 @@
         {{titulo[0].lines[0]}}
     </div>
 
-    <button type="button" class="btn btn-primary" *ngIf="showErrorAlert">
+    <button type="button" class="btn btn-primary" *ngIf="showErrorAlert" (click)="addFavoriteAutor()">
         Agregar autor {{titulo[0].author}} a favoritos
       </button>
 

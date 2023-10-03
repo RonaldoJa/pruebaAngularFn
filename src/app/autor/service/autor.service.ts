@@ -11,10 +11,19 @@ import { ObraSeleccionada } from '../interface/obraSeleccionada.interface';
 export class AutorService {
 
   private apiUrl: string = ' https://poetrydb.org';
-  // private autorSubject = new BehaviorSubject<Autor>();
-  public localStorageKey = 'productos';
+  private obraSeleccionadaSubject = new BehaviorSubject<ObraSeleccionada[]>([]);
+  private tituloSeleccionadoSubject = new BehaviorSubject<Obra[]>([]);
+  public localStorageKeyObra = 'obraSeleccionada';
+  public localStorageKeyAutor = 'autorSeleccionado';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    const storedAutor = localStorage.getItem(this.localStorageKeyAutor);
+    const storedObra = localStorage.getItem(this.localStorageKeyObra);
+
+    if (storedAutor) {
+      this.obraSeleccionadaSubject.next(JSON.parse(storedAutor));
+    }
+  }
 
   getAllAuthors(): Observable<Autor> {
     return this.http.get<Autor>(`${this.apiUrl}/author`);
@@ -28,15 +37,31 @@ export class AutorService {
     return this.http.get<ObraSeleccionada[]>(`${this.apiUrl}/title/${titulo}`);
   }
 
-  // enviarProducto(autor: Autor) {
-  //   // Obtén la lista actual de productos
-  //   const autores = this.autorSubject.value;
+  enviarObra(obra: Obra) {
+    // Obtén la lista actual de productos
+    const obras = this.tituloSeleccionadoSubject.value;
     
-  //   // Agrega el nuevo producto a la lista
-  //   autores.push(autores);
+    // Agrega el nuevo producto a la lista
+    obras.push(obra);
     
-  //   // Actualiza el BehaviorSubject y almacena los datos en localStorage
-  //   this.productosSubject.next(productos);
-  //   localStorage.setItem(this.localStorageKey, JSON.stringify(productos));
-  // }
+    // Actualiza el BehaviorSubject y almacena los datos en localStorage
+    this.tituloSeleccionadoSubject.next(obras);
+    localStorage.setItem(this.localStorageKeyObra, JSON.stringify(obras));
+  }
+
+  enviarAutor(autor: ObraSeleccionada){
+    const autores = this.obraSeleccionadaSubject.value;
+
+    autores.push(autor);
+    this.obraSeleccionadaSubject.next(autores);
+    localStorage.setItem(this.localStorageKeyAutor, JSON.stringify(autores));
+  }
+
+  obtenerAutor(): Observable<ObraSeleccionada[]> {
+    return this.obraSeleccionadaSubject.asObservable();
+  }
+
+  obtenerObra(): Observable<Obra[]> {
+    return this.tituloSeleccionadoSubject.asObservable();
+  }
 }

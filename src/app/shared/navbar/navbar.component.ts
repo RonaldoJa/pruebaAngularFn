@@ -17,4 +17,8 @@ export class NavbarComponent {
   redirectToLogin() {
     this.router.navigate(['/login']);
   }
+
+  cerrarSesion() {
+    localStorage.removeItem('authToken');
+  }
 }

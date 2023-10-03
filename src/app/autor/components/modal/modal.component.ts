@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AuthService } from '../../service/auth.service';
 import { AutorService } from '../../service/autor.service';
 import { ObraSeleccionada } from '../../interface/obraSeleccionada.interface';
+import { Autor } from '../../interface/autor.interface';
 
 @Component({
   selector: 'app-modal',
@@ -16,6 +17,7 @@ export class ModalComponent {
   modalAbierto = true;
   titulo! : ObraSeleccionada[];
   showErrorAlert: boolean = false;
+  autor!: string;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private autorService: AutorService) {
     // Accede a las obras a través de data
@@ -45,7 +47,17 @@ export class ModalComponent {
       console.log(this.titulo[0].lines[0])
       this.showErrorAlert = true;
     })
+  }
 
+  addFavoriteAutor() {
+    const autor= this.titulo[0]
+    this.autorService.enviarAutor(autor)
+  }
+
+  addFavoriteObra() {
+    const obra= this.obras[0]
+    this.autorService.enviarObra(obra)
+    //this.autorService.enviarAutor(autor)
   }
 
 }

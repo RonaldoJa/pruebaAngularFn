@@ -1,26 +1,52 @@
-<!-- <div class="container mt-4">
-    <table class="table">
+
+<div class="container mt-4">
+    <h1>Favoritos {{favoritoTotal}}. Autores: {{favoritoAutor}} - Obras: {{favoritoObra}}</h1>
+    <h1>Autores Favoritos</h1>
+    <table class="table table-hover">
       <thead>
         <tr>
-          <th scope="col">Código</th>
-          <th scope="col">Descripción</th>
-          <th scope="col">Cantidad</th>
-          <th scope="col">Precio</th>
-          <th scope="col">Total</th>
+          <th scope="col">#</th>
+          <th scope="col">Autor</th>
           <th scope="col">Acciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let producto of productos; let i = index">
-          <td>{{ producto.codigo }}</td>
-          <td>{{ producto.descripcion }}</td>
-          <td>{{ producto.cantidad }}</td>
-          <td>{{ producto.precio | currency }}</td>
-          <td>{{ producto.cantidad * producto.precio | currency }}</td>
-          <td>
-            <button class="btn btn-danger" (click)="editarProducto(producto)">Editar</button>
+        <tr *ngFor="let autores of autor; let i = index" (click)="obtenerAutor(autores.author)">
+            <td>{{i+1}}</td>
+            <td>{{ autores.author }}</td>
+            <td>
+            <button class="btn btn-danger" (click)="EliminarAutor(autores)">Eliminar</button>
           </td>
         </tr>
       </tbody>
     </table>
-  </div> -->
+    <div class="alert alert-danger" role="alert" *ngIf="showObras">
+        <div *ngFor="let titulo of titulos; let i = index">
+            {{titulo.title}}
+        </div>
+    </div>
+  </div>
+
+  
+
+  <div class="container mt-4">
+    <h1>Obras Favoritos</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Autor</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let obra of obras; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{ obra.title }}</td>
+            <td>
+            <button class="btn btn-danger">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
