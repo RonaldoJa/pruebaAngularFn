@@ -1,0 +1,45 @@
+<div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Obras</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Acciones</th>
+            <th>Favoritos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let obra of obras; index as i;">
+            <td>{{ obra.title }}</td>
+            <td>
+                <button type="button" class="btn btn-primary" (click)="getTitle(i)">
+                  Mostrar Fragmento de la obra
+                </button>
+            <td>
+                <button type="button" class="btn btn-primary">
+                    Agregar esta obra a favoritos
+                </button>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="alert alert-danger" role="alert" *ngIf="showErrorAlert">
+        <h4>Fragmento de la obra {{titulo[0].title}}</h4>
+        {{titulo[0].lines[0]}}
+    </div>
+
+    <button type="button" class="btn btn-primary" *ngIf="showErrorAlert">
+        Agregar autor {{titulo[0].author}} a favoritos
+      </button>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+    </div>
+  </div>

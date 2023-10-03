@@ -4,12 +4,16 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login/login.component';
+import { TableComponent } from './table/table.component';
+import { ModalComponent } from './modal/modal.component';
 
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    TableComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +22,8 @@ import { LoginComponent } from './login/login.component';
     
   ],
   exports: [
-    LoginComponent   
+    LoginComponent,
+    TableComponent 
   ]
 })
 export class ComponentsModule { }

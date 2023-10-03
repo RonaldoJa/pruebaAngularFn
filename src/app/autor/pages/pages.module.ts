@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatDialogModule } from '@angular/material/dialog';
+
 import { PaginaPrincipalComponent } from './pagina-principal/pagina-principal.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { LoginComponent } from '../components/login/login.component';
@@ -17,6 +19,7 @@ import { PaginaPremiunComponent } from './pagina-premiun/pagina-premiun.componen
   ],
   imports: [
     CommonModule,
+    MatDialogModule,
     ComponentsModule
   ],
   exports: [
