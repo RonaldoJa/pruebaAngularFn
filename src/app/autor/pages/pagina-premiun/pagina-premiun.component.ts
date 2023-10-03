@@ -47,11 +47,25 @@ export class PaginaPremiunComponent implements OnInit{
     return this.autor.indexOf(objeto);
   }
 
+  obtenerPosicionObra(objeto: any): number {
+    return this.obras.indexOf(objeto);
+  }
+
   EliminarAutor(objeto: any): void {
     const posicion = this.obtenerPosicion(objeto);
     if(posicion >= 0 && posicion < this.autor.length) {
       this.autor.splice(posicion, 1);
       localStorage.setItem(this.autorService.localStorageKeyAutor, JSON.stringify(this.autor));
+    } else {
+      console.log('El indice no esta dentro del rango de productos')
+    }
+  }
+
+  EliminarObra(objeto: any): void {
+    const posicion = this.obtenerPosicionObra(objeto);
+    if(posicion >= 0 && posicion < this.obras.length) {
+      this.obras.splice(posicion, 1);
+      localStorage.setItem(this.autorService.localStorageKeyObra, JSON.stringify(this.obras));
     } else {
       console.log('El indice no esta dentro del rango de productos')
     }
@@ -72,6 +86,11 @@ export class PaginaPremiunComponent implements OnInit{
       console.log(this.titulos);
       this.showObras = true;
     })
+  }
+
+  obtenerObra(obra: string) {
+    this.buscar = obra;
+    console.log(this.buscar);
   }
 
 

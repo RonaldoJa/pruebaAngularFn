@@ -54,8 +54,9 @@ export class ModalComponent {
     this.autorService.enviarAutor(autor)
   }
 
-  addFavoriteObra() {
-    const obra= this.obras[0]
+  addFavoriteObra(index: number) {
+    const obra= this.obras[index]
+    console.log(obra);
     this.autorService.enviarObra(obra)
     //this.autorService.enviarAutor(autor)
   }

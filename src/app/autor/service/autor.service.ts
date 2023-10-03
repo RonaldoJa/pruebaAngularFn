@@ -23,6 +23,10 @@ export class AutorService {
     if (storedAutor) {
       this.obraSeleccionadaSubject.next(JSON.parse(storedAutor));
     }
+
+    if (storedObra) {
+      this.tituloSeleccionadoSubject.next(JSON.parse(storedObra));
+    }
   }
 
   getAllAuthors(): Observable<Autor> {
